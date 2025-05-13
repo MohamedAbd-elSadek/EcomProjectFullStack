@@ -11,7 +11,7 @@ namespace EcomProject.DAL.Repos.Generic
         void Add(T entity);
         void Delete(T entity);
         void Update(T entity);
-        Task<T> GetAsync(Guid id);
+        Task<T?> GetAsync(Guid id);
 
         Task<List<T>> GetAllAsync();
     }

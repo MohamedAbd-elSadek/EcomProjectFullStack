@@ -9,5 +9,8 @@ namespace EcomProject.DAL.Repos.Product
 {
     public interface IProductRepo : IGenericRepo<Models.Product>
     {
+        Task<List<Models.Product>> GetAllWithCategoryAsync();
+        Task<Models.Product?> GetByIdWithCategoryAsync(Guid id);
+        Task<List<Models.Product>> GetAllAsync(string sort);
     }
 }

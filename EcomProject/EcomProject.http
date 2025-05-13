@@ -1,6 +1,6 @@
 @EcomProject_HostAddress = http://localhost:5018
 
-GET {{EcomProject_HostAddress}}/weatherforecast/
+### Get All Projects
+GET {{EcomProject_HostAddress}}/api/Product
 Accept: application/json
 
-###

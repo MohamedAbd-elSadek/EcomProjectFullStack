@@ -38,7 +38,7 @@ namespace EcomProject.DAL.Repos.Generic
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _ecommDBContext.Set<T>().Update(entity);
         }
     }
 }

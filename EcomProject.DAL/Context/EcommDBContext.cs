@@ -47,6 +47,8 @@ namespace EcomProject.DAL.Context
                     .IsRequired();
             });
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            
         }
 
         public virtual DbSet<User> Users { get; set; }

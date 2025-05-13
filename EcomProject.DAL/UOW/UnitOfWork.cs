@@ -17,11 +17,31 @@ namespace EcomProject.DAL.UOW
             ICategoryRepo categoryRepo,
             IProductRepo productRepo,
             IPhotoRepo photoRepo)
+            // يسطا
+            // انا خدت بالي من حاجه
+            // injectionانا عاكس ال
         {
+            // ما هو ده اللى كنت هقولهولك ياعلق 
+            ////////// خخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخ
+            ///انا فالايرور ده من الساعه 2 ونص ودين امي
+            /////يلعن كسمين ام البرمجه ان راجع مدني
+            ///// LOL 
             _context = context;
-            categoryRepo = CategoryRepo;
-            productRepo = ProductRepo;
-            photoRepo = PhotoRepo;
+            CategoryRepo = categoryRepo;
+            //categoryRepo = CategoryRepo;
+            ProductRepo = productRepo;
+            //productRepo = ProductRepo;
+            PhotoRepo = photoRepo;
+            //photoRepo = PhotoRepo;
+            // خخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخ
+            // ضحك وعهد الله ... غيرتلى مودى وانا مكتئب ومتدشمل 
+            // يعم منا بشد شعري بقالي ساعتين لحد ما بقيت شبه عم احمد نورالدين
+            //بكرر الكلام مرتين 
+            //بكرر الكلام مرتين
+            // للأسف مفيش ايموشنز فى الفيجوال استوديو :D 
+            // المهم انا هروح انام وماتنساش تدعيلى يسطا بالله عليك 
+            // تصبح على خير 
+            // اخويا المبرمج التنين ♥♥♥♥
         }
 
         public ICategoryRepo CategoryRepo { get; }
