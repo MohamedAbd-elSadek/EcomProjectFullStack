@@ -19,7 +19,8 @@ namespace EcomProject.Middleware
         {
             try
             {
-                ApplySecurity(context);
+                ApplySecurity(context); 
+
                 if (isRequestAllowed(context) == false) 
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.TooManyRequests;
@@ -31,14 +32,13 @@ namespace EcomProject.Middleware
                         Message = "Too many request, try again later"
                     };
                     await context.Response.WriteAsJsonAsync(response);
-
-                    await _next(context);
-
                 }
             }  
             catch (Exception ex) {
                 throw new Exception(ex.Message);
             }
+
+            await _next(context);
         }
         private bool isRequestAllowed(HttpContext context)
         {
@@ -71,7 +71,6 @@ namespace EcomProject.Middleware
             context.Response.Headers["X-Content-Type-Options"] = "nosniff";
             context.Response.Headers["X-XSS-Protection"] = "1;mode=block";
             context.Response.Headers["X-Frame-Options"] = "DENY";
-
         }
     }
 }
