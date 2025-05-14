@@ -19,16 +19,9 @@ namespace EcomProject.Controllers
 
         [HttpGet]
 
-        public async Task<Ok<List<ProductReadDTO>>> GetAllProducts()
+        public async Task<Ok<List<ProductReadDTO>>> GetAllProducts(string? sort,Guid? categoryId,int PageSize,int PageNumber,string? search)
         {
-           return TypedResults.Ok( await productManager.GetAllProducts());
-        }
-
-        [HttpGet("sorted")]
-
-        public async Task<Ok<List<ProductReadDTO>>> GetAllProducts(string sort)
-        {
-            return TypedResults.Ok(await productManager.GetAllProducts(sort));
+            return TypedResults.Ok(await productManager.GetAllProducts(sort,categoryId,  PageSize,  PageNumber,search));
         }
 
         [HttpGet("{id}")]

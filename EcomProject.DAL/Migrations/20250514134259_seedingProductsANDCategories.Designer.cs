@@ -4,6 +4,7 @@ using EcomProject.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcomProject.DAL.Migrations
 {
     [DbContext(typeof(EcommDBContext))]
-    partial class EcommDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250514134259_seedingProductsANDCategories")]
+    partial class seedingProductsANDCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,61 +48,61 @@ namespace EcomProject.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            CategoryId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CategoryId = new Guid("3b9ff13b-6710-49f5-93a1-91606740a046"),
                             Description = "Devices and gadgets for everyday use.",
                             Name = "Electronics"
                         },
                         new
                         {
-                            CategoryId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CategoryId = new Guid("684f4d29-2a41-405f-b45b-eccda68c6eb2"),
                             Description = "Comfortable and stylish furniture for home and office.",
                             Name = "Furniture"
                         },
                         new
                         {
-                            CategoryId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            CategoryId = new Guid("681d5e12-a354-44d0-a2db-5e880f41f8bb"),
                             Description = "Smart devices for home management.",
                             Name = "Home Automation"
                         },
                         new
                         {
-                            CategoryId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            CategoryId = new Guid("0bf114eb-4628-4ca7-afe1-34794aec6148"),
                             Description = "High-quality kitchen and dining products.",
                             Name = "Kitchenware"
                         },
                         new
                         {
-                            CategoryId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            CategoryId = new Guid("84219a8e-dd9a-4df6-9234-cac995fd8c4e"),
                             Description = "Equipment and accessories for fitness enthusiasts.",
                             Name = "Fitness"
                         },
                         new
                         {
-                            CategoryId = new Guid("66666666-6666-6666-6666-666666666666"),
+                            CategoryId = new Guid("760b3280-d388-4e1c-bdb8-580f046e9c91"),
                             Description = "High-quality audio devices for music lovers.",
                             Name = "Audio"
                         },
                         new
                         {
-                            CategoryId = new Guid("77777777-7777-7777-7777-777777777777"),
+                            CategoryId = new Guid("56f443af-13db-42de-87dc-32c29af77930"),
                             Description = "Essential home appliances for daily use.",
                             Name = "Appliances"
                         },
                         new
                         {
-                            CategoryId = new Guid("88888888-8888-8888-8888-888888888888"),
+                            CategoryId = new Guid("7a79204f-3df3-448f-99e8-a51bf60178ac"),
                             Description = "Modern lighting solutions for home and office.",
                             Name = "Lighting"
                         },
                         new
                         {
-                            CategoryId = new Guid("99999999-9999-9999-9999-999999999999"),
+                            CategoryId = new Guid("8192919e-a763-4fd1-bb30-bea06339e904"),
                             Description = "Durable and stylish bags for travel and daily use.",
                             Name = "Bags & Luggage"
                         },
                         new
                         {
-                            CategoryId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            CategoryId = new Guid("cbfa6f78-6ffa-457f-ac6e-d688005aeab4"),
                             Description = "Accessories to enhance your computing experience.",
                             Name = "Computer Accessories"
                         });
@@ -166,8 +169,8 @@ namespace EcomProject.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("b1111111-1111-1111-1111-111111111111"),
-                            CategoryId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            ProductId = new Guid("18ab1b16-fb91-48eb-b3cc-c6ca78ca27c1"),
+                            CategoryId = new Guid("3b9ff13b-6710-49f5-93a1-91606740a046"),
                             Description = "Noise-cancelling wireless headphones with 20-hour battery life.",
                             Discount = 10,
                             ManufactureDate = new DateOnly(2023, 1, 15),
@@ -176,8 +179,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b2222222-2222-2222-2222-222222222222"),
-                            CategoryId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            ProductId = new Guid("69b98343-bccb-43c7-a81f-d21a506995f5"),
+                            CategoryId = new Guid("684f4d29-2a41-405f-b45b-eccda68c6eb2"),
                             Description = "Ergonomic leather chair for office use.",
                             Discount = 15,
                             ManufactureDate = new DateOnly(2022, 11, 20),
@@ -186,8 +189,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b3333333-3333-3333-3333-333333333333"),
-                            CategoryId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            ProductId = new Guid("d8fb6052-f65a-4a7d-b66e-253e7e588919"),
+                            CategoryId = new Guid("681d5e12-a354-44d0-a2db-5e880f41f8bb"),
                             Description = "Wi-Fi enabled thermostat for energy-efficient heating.",
                             Discount = 5,
                             ManufactureDate = new DateOnly(2023, 3, 5),
@@ -196,8 +199,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b4444444-4444-4444-4444-444444444444"),
-                            CategoryId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            ProductId = new Guid("37889d2a-9036-4f2b-9f43-dbc081587c22"),
+                            CategoryId = new Guid("0bf114eb-4628-4ca7-afe1-34794aec6148"),
                             Description = "Insulated stainless steel water bottle, 1L capacity.",
                             Discount = 0,
                             ManufactureDate = new DateOnly(2023, 2, 10),
@@ -206,8 +209,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b5555555-5555-5555-5555-555555555555"),
-                            CategoryId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            ProductId = new Guid("7ee6f6fb-3c44-4d88-a66c-0805b3a9ff3d"),
+                            CategoryId = new Guid("84219a8e-dd9a-4df6-9234-cac995fd8c4e"),
                             Description = "Eco-friendly yoga mat with non-slip surface.",
                             Discount = 20,
                             ManufactureDate = new DateOnly(2023, 4, 1),
@@ -216,8 +219,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b6666666-6666-6666-6666-666666666666"),
-                            CategoryId = new Guid("66666666-6666-6666-6666-666666666666"),
+                            ProductId = new Guid("76bdcd16-a467-4a43-be54-60a682f9f097"),
+                            CategoryId = new Guid("760b3280-d388-4e1c-bdb8-580f046e9c91"),
                             Description = "Portable Bluetooth speaker with 12-hour battery life.",
                             Discount = 10,
                             ManufactureDate = new DateOnly(2023, 1, 25),
@@ -226,8 +229,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b7777777-7777-7777-7777-777777777777"),
-                            CategoryId = new Guid("77777777-7777-7777-7777-777777777777"),
+                            ProductId = new Guid("dcdf275f-569b-495d-b31b-1bc7768609a4"),
+                            CategoryId = new Guid("56f443af-13db-42de-87dc-32c29af77930"),
                             Description = "Fast-boiling electric kettle with auto-shutoff.",
                             Discount = 0,
                             ManufactureDate = new DateOnly(2023, 3, 15),
@@ -236,8 +239,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b8888888-8888-8888-8888-888888888888"),
-                            CategoryId = new Guid("88888888-8888-8888-8888-888888888888"),
+                            ProductId = new Guid("2ffd6f27-ec2f-4c5c-bb6d-3696dbfc19b1"),
+                            CategoryId = new Guid("7a79204f-3df3-448f-99e8-a51bf60178ac"),
                             Description = "Adjustable LED desk lamp with 3 brightness levels.",
                             Discount = 5,
                             ManufactureDate = new DateOnly(2023, 2, 28),
@@ -246,8 +249,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("b9999999-9999-9999-9999-999999999999"),
-                            CategoryId = new Guid("99999999-9999-9999-9999-999999999999"),
+                            ProductId = new Guid("30cd4e3e-713d-49c4-bfd6-0b9a3397d6a2"),
+                            CategoryId = new Guid("8192919e-a763-4fd1-bb30-bea06339e904"),
                             Description = "Water-resistant backpack with multiple compartments.",
                             Discount = 15,
                             ManufactureDate = new DateOnly(2023, 4, 10),
@@ -256,8 +259,8 @@ namespace EcomProject.DAL.Migrations
                         },
                         new
                         {
-                            ProductId = new Guid("baaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            CategoryId = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            ProductId = new Guid("f6cc363d-166e-450e-962c-69f25ae7ee1e"),
+                            CategoryId = new Guid("cbfa6f78-6ffa-457f-ac6e-d688005aeab4"),
                             Description = "Ergonomic wireless mouse with silent clicks.",
                             Discount = 0,
                             ManufactureDate = new DateOnly(2023, 3, 20),

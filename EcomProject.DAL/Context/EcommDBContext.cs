@@ -48,7 +48,14 @@ namespace EcomProject.DAL.Context
             });
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            
+            var (products, categories) = Seeders.ProductSeeder.SeedData();
+
+            modelBuilder.Entity<Category>().HasData(categories);
+            modelBuilder.Entity<Product>().HasData(products);
+
+
+
+
         }
 
         public virtual DbSet<User> Users { get; set; }

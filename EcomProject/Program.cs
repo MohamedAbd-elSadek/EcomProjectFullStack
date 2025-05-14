@@ -3,6 +3,7 @@ using EcomProject.BL;
 using EcomProject.DAL;
 using EcomProject.DAL.Context;
 using EcomProject.DAL.Models;
+using EcomProject.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -16,10 +17,18 @@ namespace EcomProject
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddMemoryCache();
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CORSPolicy", builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200");
+                });
+            });
 
 
             #region Auth 
@@ -66,7 +75,8 @@ namespace EcomProject
             {
                 app.MapOpenApi();
             }
-
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseCors("CORSPolicy");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();

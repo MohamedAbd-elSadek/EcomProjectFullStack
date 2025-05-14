@@ -35,12 +35,31 @@ namespace EcomProject.DAL.Repos.Product
 
         // Sorting Section
 
-        public async Task<List<Models.Product>> GetAllAsync(string sort)
+        public async Task<List<Models.Product>> GetAllAsync(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
         {
             var query =  _context.Products
                 .Include(p=>p.Photos)
                 .Include(p=>p.Category)
                 .AsNoTracking();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var words = search.Split(' ');
+                query = query.Where(p=> words.All(word => 
+                p.Name.ToLower().Contains(word.ToLower())
+                //||
+                //p.Description.ToLower().Contains(word.ToLower())
+                )
+                
+                );
+            }
+
+            //Filtering By Category
+
+            if (categoryId != null) 
+            {
+                query = query.Where(c => c.CategoryId == categoryId);
+            }
 
             if (string.IsNullOrEmpty(sort))
             {
@@ -60,6 +79,17 @@ namespace EcomProject.DAL.Repos.Product
                     break;
 
             }
+            if (PageNumber<=0 )
+            {
+                PageNumber = 1;
+            }
+            if (PageSize<=0)
+            {
+                PageSize = 3;
+            }
+            
+                query = query.Skip((PageSize) * (PageNumber - 1)).Take(PageSize);
+
             return (await query.ToListAsync());
         }
     }

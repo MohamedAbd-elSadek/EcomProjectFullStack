@@ -11,6 +11,6 @@ namespace EcomProject.DAL.Repos.Product
     {
         Task<List<Models.Product>> GetAllWithCategoryAsync();
         Task<Models.Product?> GetByIdWithCategoryAsync(Guid id);
-        Task<List<Models.Product>> GetAllAsync(string sort);
+        Task<List<Models.Product>> GetAllAsync(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search);
     }
 }

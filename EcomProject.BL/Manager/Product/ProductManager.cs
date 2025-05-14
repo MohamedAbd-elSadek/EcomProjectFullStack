@@ -107,13 +107,13 @@ namespace EcomProject.BL.Manager.Product
             //عرفت الغلطة فين يس ههههههههههييييييييييييييييييهههههههههههههه يلا امعلم صلح ووريني دخيلك معليييم
         }
 
-        public async Task<List<ProductReadDTO>> GetAllProducts(string sort)
+        public async Task<List<ProductReadDTO>> GetAllProducts(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
         {
             if (string.IsNullOrWhiteSpace(sort))
             {
             sort = "NameAsc";
             }
-            var products = await unitOfWork.ProductRepo.GetAllAsync(sort);
+            var products = await unitOfWork.ProductRepo.GetAllAsync(sort,categoryId,  PageSize,  PageNumber,search);
             if (products == null)
             {
                     return new List<ProductReadDTO>(); 
