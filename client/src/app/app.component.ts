@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { environment } from '../enviroment/enviroment';
+import { Product } from './shared/Models/Product';
+
 
 @Component({
   selector: 'app-root',
@@ -6,6 +10,13 @@ import { Component } from '@angular/core';
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  constructor(){
+
+  }
+  ngOnInit(): void {
+  }
+
+
   title = 'client';
 }

@@ -24,11 +24,14 @@ namespace EcomProject
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("CORSPolicy", builder =>
+                options.AddPolicy("AllowAngularApp", policy =>
                 {
-                    builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200");
+                    policy.WithOrigins("http://localhost:4200") // <-- Angular URL
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
                 });
             });
+
 
 
             #region Auth 
@@ -69,6 +72,7 @@ namespace EcomProject
             BusinessExtensions.AddBussinessExtensions(builder.Services);
 
             var app = builder.Build();
+            app.UseCors("AllowAngularApp");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -76,7 +80,6 @@ namespace EcomProject
                 app.MapOpenApi();
             }
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseCors("CORSPolicy");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();

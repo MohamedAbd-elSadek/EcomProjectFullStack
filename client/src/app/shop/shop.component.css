@@ -1,0 +1,58 @@
+/*Style the select dropdown*/
+.custom-select {
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-select:hover {
+  border-color: #dc3545; /* Bootstrap red */
+}
+
+/* Style the list items in the sidebar */
+.custom-list-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-list-item:hover {
+  background-color: #f8f9fa;
+  color: #dc3545;
+}
+
+.custom-list-group .custom-list-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-list-group .custom-list-item:hover {
+  background-color: rgba(255, 111, 97, 0.1);
+}
+
+.custom-list-group .custom-list-item.active {
+  background-color: #7961ff;
+  border-color: #7961ff;
+  color: #fff;
+}
+
+/* -------------------------- */
+
+
+/* Responsive spacing for sidebar */
+@media (max-width: 767.98px) {
+  .search-bar {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+
+
+
