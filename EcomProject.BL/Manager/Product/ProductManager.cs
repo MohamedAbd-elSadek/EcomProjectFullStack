@@ -101,7 +101,14 @@ namespace EcomProject.BL.Manager.Product
                 ManufactureDate = p.ManufactureDate,
                 Price = p.Price,
                 Discount = p.Discount,
-                CategoryName = p.Category?.Name ?? "No Category"
+                CategoryName = p.Category?.Name ?? "No Category",
+                Photos = p.Photos.Select(photo => new DTOs.Photos.ReadPhotoDTO
+                {
+                    PhotoId = photo.PhotoId,
+                    PhotoPath = photo.PhotoPath,
+                    ProductId=photo.ProductId
+                }).ToList(),
+
             }).ToList();
 
             //عرفت الغلطة فين يس ههههههههههييييييييييييييييييهههههههههههههه يلا امعلم صلح ووريني دخيلك معليييم
@@ -126,7 +133,13 @@ namespace EcomProject.BL.Manager.Product
                 ManufactureDate = p.ManufactureDate,
                 Price = p.Price,
                 Discount = p.Discount,
-                CategoryName = p.Category?.Name ?? "No Category"
+                CategoryName = p.Category?.Name ?? "No Category",
+                Photos = p.Photos.Select(photo => new DTOs.Photos.ReadPhotoDTO
+                {
+                    PhotoId = photo.PhotoId,
+                    PhotoPath = photo.PhotoPath,
+                    ProductId = photo.ProductId
+                }).ToList(),
             }).ToList();
 
             //عرفت الغلطة فين يس ههههههههههييييييييييييييييييهههههههههههههه يلا امعلم صلح ووريني دخيلك معليييم
@@ -147,6 +160,12 @@ namespace EcomProject.BL.Manager.Product
                 Price = product.Price,
                 Discount = product.Discount,
                 CategoryName = product.Category.Name,
+                Photos = product.Photos.Select(photo => new DTOs.Photos.ReadPhotoDTO
+                {
+                    PhotoId = photo.PhotoId,
+                    PhotoPath = photo.PhotoPath,
+                    ProductId = photo.ProductId
+                }).ToList(),
             };
         }
 

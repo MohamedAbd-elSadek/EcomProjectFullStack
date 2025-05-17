@@ -18,7 +18,7 @@ constructor(private readonly http:HttpClient){
     return this.http.get(this.CatUrl);
   }
 
-  prodUrl =environment.apiUrl + '/product?sort=&categoryId=&PageSize=4&PageNumber=3&search=';
+  prodUrl =environment.apiUrl + '/product?sort=&categoryId=&PageSize=4&PageNumber=1&search=';
 
   product:Product[];
 

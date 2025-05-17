@@ -9,10 +9,9 @@ namespace EcomProject.BL.DTOs.Photos
     public class ReadPhotoDTO
     {
         public Guid PhotoId { get; set; }
-        public string PhotoName { get; set; } = string.Empty;
 
         public string PhotoPath { get; set; } = string.Empty;
 
-        public string ProductName { get; set; } = string.Empty;
+        public Guid ProductId { get; set; }
     }
 }

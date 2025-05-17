@@ -30,7 +30,7 @@ namespace EcomProject.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> AddPhotoToProduct(Guid productId,IFormFile file)
+        public async Task<IActionResult> AddPhotoToProduct(Guid productId,[FromForm]IFormFile file)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace EcomProject.Controllers
                     productId,
                     new AddPhotoDTO
                     {
-                        PhotoName = file.FileName,
+                        //PhotoName = file.FileName,
                         PhotoPath = fileUrl
                     }
                 );
@@ -77,21 +77,21 @@ namespace EcomProject.Controllers
             }
         }
 
-        [HttpDelete("{photoId}")]
+        [HttpDelete("")]
 
-        public async Task<IActionResult> DeletePhotoFromProduct(Guid productId,Guid photoId)
+        public async Task<IActionResult> DeletePhotoFromProduct(Guid productId)
         {
             try
             {
                 // Verify attachment belongs to bug
-                var photo = await photoManager.GetPhotoByIdAsync(photoId);
-                if (photo == null)
-                {
-                    return NotFound(new { message = "Photo not found for this product" });
-                }
+                //var photo = await photoManager.GetPhotoByIdAsync(photoId);
+                //if (photo == null)
+                //{
+                //    return NotFound(new { message = "Photo not found for this product" });
+                //}
 
-                await photoManager.RemovePhotosFromProduct(photoId);
-                return Ok(new { message = "Photo deleted successfully" });
+                await photoManager.RemovePhotosFromProduct(productId);
+                return Ok(new { message = "Photos deleted successfully" });
             }
             catch (Exception ex)
             {

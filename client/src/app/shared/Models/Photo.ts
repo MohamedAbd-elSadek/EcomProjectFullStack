@@ -1,4 +1,5 @@
 export interface Photo {
- imageName:string
+  photoId:string
+ photoPath:string
   productId: string
 }

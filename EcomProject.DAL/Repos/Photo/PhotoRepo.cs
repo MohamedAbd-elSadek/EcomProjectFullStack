@@ -21,9 +21,10 @@ namespace EcomProject.DAL.Repos.Photo
         public void AddPhotoToProduct(Guid productId, Models.Photo photo)
         {
             
-            photo.ProductId = productId;
+            //photo.ProductId = productId;
             _context.Photos.Add(photo);
-            
+            Console.WriteLine("Saving Photo with ProductId: " + photo.ProductId);
+
         }
 
         public void DeleteAllPhotosFromProduct(Guid productId)

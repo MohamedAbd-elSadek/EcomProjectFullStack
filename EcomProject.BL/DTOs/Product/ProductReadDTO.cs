@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EcomProject.BL.DTOs.Photos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,5 +19,8 @@ namespace EcomProject.BL.DTOs.Product
 
         public int Discount { get; set; }
         public string CategoryName { get; set; } = string.Empty;
+
+        public virtual List<ReadPhotoDTO>? Photos { get; set; }
+
     }
 }

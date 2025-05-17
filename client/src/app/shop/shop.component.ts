@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from './shop.service';
 import { Product } from '../shared/Models/Product';
+import { Photo } from '../shared/Models/Photo';
 
 @Component({
   selector: 'app-shop',
@@ -17,12 +18,15 @@ export class ShopComponent implements OnInit {
   }
 
   product:Product[]
+  photo:Photo[]
 
   getAllProducts(){
     this.shopService.getProduct().subscribe({
       next:((value:Product[])=>{
         this.product=value;
+        console.log(this.product);
       })
     })
   }
+
 }

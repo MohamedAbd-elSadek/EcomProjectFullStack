@@ -26,4 +26,8 @@
     <ProjectReference Include="..\EcomProject.BL\EcomProject.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Attachments\" />
+  </ItemGroup>
+
 </Project>

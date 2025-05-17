@@ -27,9 +27,9 @@ namespace EcomProject.BL.Manager.Photo
             var newPhoto = new DAL.Models.Photo
             {
                 PhotoId= Guid.NewGuid(),
-                PhotoName = addPhotoDTO.PhotoName,
                 PhotoPath = addPhotoDTO.PhotoPath,
-                
+                ProductId= productId,
+                PhotoName = Path.GetFileName(addPhotoDTO.PhotoPath) // ✅ Fix: required field
             };
             unitOfWork.PhotoRepo.AddPhotoToProduct(productId, newPhoto);
             await unitOfWork.SaveChangesAsync();
@@ -45,9 +45,9 @@ namespace EcomProject.BL.Manager.Photo
             var photos = await unitOfWork.PhotoRepo.GetPhotosFromProduct(productId);
             return photos.Select(p=> new ReadPhotoDTO 
             { PhotoId = p.PhotoId,
-                PhotoName = p.PhotoName,
                 PhotoPath = p.PhotoPath,
-                ProductName = p.Product.Name
+                ProductId= p.ProductId,
+                //ProductName = p.Product.Name
             }
             ).ToList();
         }
@@ -74,8 +74,8 @@ namespace EcomProject.BL.Manager.Photo
             return new ReadPhotoDTO
             {
                 PhotoId = photo.PhotoId,
-                PhotoName = photo.PhotoName,
                 PhotoPath = photo.PhotoPath,
+                ProductId=photo.ProductId
             };
 
         }

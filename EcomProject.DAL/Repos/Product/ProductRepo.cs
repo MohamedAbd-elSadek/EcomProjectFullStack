@@ -30,6 +30,7 @@ namespace EcomProject.DAL.Repos.Product
         {
            return await _context.Products
                 .Include (p => p.Category)
+                .Include(p=>p.Photos)
                 .FirstOrDefaultAsync(p=>p.ProductId == id);
         }
 

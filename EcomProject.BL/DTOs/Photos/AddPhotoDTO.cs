@@ -8,7 +8,7 @@ namespace EcomProject.BL.DTOs.Photos
 {
     public class AddPhotoDTO
     {
-        public string PhotoName { get; set; } = string.Empty;
+        //public string PhotoName { get; set; } = string.Empty;
 
         public string PhotoPath { get; set; } = string.Empty;
     }

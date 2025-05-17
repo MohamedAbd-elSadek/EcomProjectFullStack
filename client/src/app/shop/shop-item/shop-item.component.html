@@ -1,9 +1,11 @@
             <div class="card h-100">
-                <img src="https://m.media-amazon.com/images/I/41WXlmlE98L._AC_SX679_.jpg" alt="" class="image-top">
+                <img src="{{Product.photos[0].photoPath}}" alt="" class="image-top">
                 <div class="card-body">
                     <div class="thumbnails mb-3">
-                        <img src="https://m.media-amazon.com/images/I/512IzTv6LoL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="" class="thumbnails-img small-img">
-                        <img src="https://m.media-amazon.com/images/I/41WXlmlE98L._AC_SX679_.jpg" alt="" class="thumbnails-img small-img">
+                        @for (item of Product.photos; track $index) {
+                            <img src="{{item.photoPath}}" alt="" class="thumbnails-img small-img">
+                        }
+                        
                     </div>
                     <h5 class="card-title">{{Product.name}}</h5>
                     <p class="card-text">{{Product.description}}</p>

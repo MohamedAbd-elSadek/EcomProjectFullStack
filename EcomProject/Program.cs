@@ -5,6 +5,7 @@ using EcomProject.DAL.Context;
 using EcomProject.DAL.Models;
 using EcomProject.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -79,6 +80,13 @@ namespace EcomProject
             {
                 app.MapOpenApi();
             }
+
+            var imagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "Attachments");
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(imagesFolder),
+                RequestPath = "/attachments"
+            });
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseAuthentication();
