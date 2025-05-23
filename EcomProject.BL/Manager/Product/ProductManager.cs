@@ -213,5 +213,30 @@ namespace EcomProject.BL.Manager.Product
                 Errors = []
             };
         }
+
+        public async Task<PagedProductResultDTO> GetAllProductsPaged(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
+        {
+            var (products, totalCount) = await unitOfWork.ProductRepo.GetAllWithCountAsync(sort, categoryId, PageSize, PageNumber, search);
+            return new PagedProductResultDTO
+            {
+                Data = products.Select(p => new ProductReadDTO
+                {
+                    ProductId = p.ProductId,
+                    Name = p.Name,
+                    Description = p.Description,
+                    ManufactureDate = p.ManufactureDate,
+                    Price = p.Price,
+                    Discount = p.Discount,
+                    CategoryName = p.Category?.Name ?? "No Category",
+                    Photos = p.Photos.Select(photo => new DTOs.Photos.ReadPhotoDTO
+                    {
+                        PhotoId = photo.PhotoId,
+                        PhotoPath = photo.PhotoPath,
+                        ProductId = photo.ProductId
+                    }).ToList(),
+                }).ToList(),
+                TotalCount = totalCount
+            };
+        }
     }
 }

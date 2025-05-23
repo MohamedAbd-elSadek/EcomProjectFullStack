@@ -55,7 +55,7 @@ namespace EcomProject.Middleware
 
             if (dateNow - timesTamp < rateLimitWindow)
             {
-                if (count >= 8) { return false; }
+                if (count >= 200) { return false; }
                 memoryCache.Set(cacheKey, (timesTamp, count + 1),rateLimitWindow); 
             }
             else

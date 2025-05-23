@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { provideHttpClient } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { ShopModule } from './shop/shop.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
-    ShopModule
+    ShopModule,
+    PaginationModule.forRoot()
   ],
   providers: [
     provideClientHydration(withEventReplay()),

@@ -93,5 +93,51 @@ namespace EcomProject.DAL.Repos.Product
 
             return (await query.ToListAsync());
         }
+
+        public async Task<(List<Models.Product> Products, int TotalCount)> GetAllWithCountAsync(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
+        {
+            var query = _context.Products
+                .Include(p => p.Photos)
+                .Include(p => p.Category)
+                .AsNoTracking();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var words = search.Split(' ');
+                query = query.Where(p => words.All(word => p.Name.ToLower().Contains(word.ToLower())));
+            }
+
+            if (categoryId != null)
+            {
+                query = query.Where(c => c.CategoryId == categoryId);
+            }
+
+            var totalCount = await query.CountAsync();
+
+            if (string.IsNullOrEmpty(sort))
+            {
+                sort = "NameAsc";
+            }
+            switch (sort.ToLower())
+            {
+                case "priceasc":
+                    query = query.OrderBy(p => p.Price);
+                    break;
+                case "pricedesc":
+                    query = query.OrderByDescending(p => p.Price);
+                    break;
+                case "nameasc":
+                default:
+                    query = query.OrderBy(p => p.Name);
+                    break;
+            }
+
+            if (PageNumber <= 0) PageNumber = 1;
+            if (PageSize <= 0) PageSize = 3;
+
+            var products = await query.Skip(PageSize * (PageNumber - 1)).Take(PageSize).ToListAsync();
+
+            return (products, totalCount);
+        }
     }
 }

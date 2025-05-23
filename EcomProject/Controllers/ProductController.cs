@@ -18,10 +18,10 @@ namespace EcomProject.Controllers
         }
 
         [HttpGet]
-
-        public async Task<Ok<List<ProductReadDTO>>> GetAllProducts(string? sort,Guid? categoryId,int PageSize,int PageNumber,string? search)
+        public async Task<ActionResult<PagedProductResultDTO>> GetAllProducts(string? sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
         {
-            return TypedResults.Ok(await productManager.GetAllProducts(sort,categoryId,  PageSize,  PageNumber,search));
+            var result = await productManager.GetAllProductsPaged(sort, categoryId, PageSize, PageNumber, search);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

@@ -13,6 +13,7 @@ namespace EcomProject.BL.Manager.Product
         Task<ProductReadDTO> GetProductById(Guid productId);
         Task<List<ProductReadDTO>> GetAllProducts();
         Task<List<ProductReadDTO>> GetAllProducts(string sort, Guid? categoryId, int PageSize, int PageNumber,string? search);
+        Task<PagedProductResultDTO> GetAllProductsPaged(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search);
 
         Task<GeneralResult> AddProduct(ProductAddDTO productAddDTO);
         Task<GeneralResult> DeleteProduct(Guid productId);
