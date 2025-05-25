@@ -43,7 +43,9 @@ constructor(private readonly http:HttpClient){
     return this.http.get<{ data: Product[], totalCount: number }>(environment.apiUrl + '/product', { params: param });
   }
 
-
+  getProductDetails(productId:string){
+    return this.http.get<Product>(environment.apiUrl + '/product/'+ productId )
+  }
   ngOnInit(): void {
 this.getCategory();
 this.getProduct();

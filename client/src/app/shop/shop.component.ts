@@ -4,6 +4,7 @@ import { Product } from '../shared/Models/Product';
 import { Photo } from '../shared/Models/Photo';
 import { Category } from '../shared/Models/Category';
 import { ProductParam } from '../shared/Models/ProductParam';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-shop',
@@ -12,7 +13,7 @@ import { ProductParam } from '../shared/Models/ProductParam';
   styleUrl: './shop.component.css'
 })
 export class ShopComponent implements OnInit {
-  constructor(private readonly shopService:ShopService){
+  constructor(private readonly shopService:ShopService,private toastr: ToastrService){
 
   }
   ngOnInit(): void {
@@ -29,14 +30,23 @@ export class ShopComponent implements OnInit {
 
   Params=new ProductParam()
 
-  getAllProducts(){
+   getAllProducts(){
     this.shopService.getProduct(this.Params).subscribe({
       next: (value) => {
         this.product = value.data;
         this.totalItems = value.totalCount;
         this.itemsOnCurrentPage=value.data.length
+        console.log(this.product);
+        
       }
     })
+    console.log(this.product.length);
+    
+    if(this.product.length != 0){
+          this.toastr.success("All products Loaded")
+    }else{
+      this.toastr.error("Error Loading Products")
+    }
   }
 
   //GetCategories

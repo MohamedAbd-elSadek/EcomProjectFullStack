@@ -1,4 +1,5 @@
-﻿using EcomProject.DAL.Repos.Category;
+﻿using EcomProject.DAL.Repos.Basket;
+using EcomProject.DAL.Repos.Category;
 using EcomProject.DAL.Repos.Photo;
 using EcomProject.DAL.Repos.Product;
 using System;
@@ -16,5 +17,7 @@ namespace EcomProject.DAL.UOW
         public ICategoryRepo CategoryRepo { get; }
         public IProductRepo ProductRepo { get; }
         public IPhotoRepo PhotoRepo { get; }
+
+        public ICustomerBasket customerBasket { get; }
     }
 }

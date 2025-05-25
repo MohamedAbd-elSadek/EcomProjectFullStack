@@ -4,6 +4,9 @@ import { ShopComponent } from './shop.component';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+
 
 
 
@@ -16,7 +19,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    NgxImageZoomModule
   ],
   exports:[ShopComponent]
 })

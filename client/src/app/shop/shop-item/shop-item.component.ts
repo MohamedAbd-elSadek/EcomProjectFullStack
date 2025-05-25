@@ -8,5 +8,6 @@ import { Product } from '../../shared/Models/Product';
   styleUrl: './shop-item.component.css'
 })
 export class ShopItemComponent {
-@Input() Product:Product  
+  @Input() Product: Product;
+  isPhotoExpanded = false;
 }

@@ -1,7 +1,9 @@
 ﻿using EcomProject.DAL.Context;
+using EcomProject.DAL.Repos.Basket;
 using EcomProject.DAL.Repos.Category;
 using EcomProject.DAL.Repos.Photo;
 using EcomProject.DAL.Repos.Product;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,14 @@ namespace EcomProject.DAL.UOW
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EcommDBContext _context;
+        private readonly IConnectionMultiplexer _redis;
         public UnitOfWork(EcommDBContext context,
             ICategoryRepo categoryRepo,
             IProductRepo productRepo,
-            IPhotoRepo photoRepo)
+            IPhotoRepo photoRepo,
+            ICustomerBasket customerBasket,
+            IConnectionMultiplexer redis)
+
             // يسطا
             // انا خدت بالي من حاجه
             // injectionانا عاكس ال
@@ -32,6 +38,10 @@ namespace EcomProject.DAL.UOW
             ProductRepo = productRepo;
             //productRepo = ProductRepo;
             PhotoRepo = photoRepo;
+
+            this.customerBasket = customerBasket;
+
+            _redis = redis;
             //photoRepo = PhotoRepo;
             // خخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخ
             // ضحك وعهد الله ... غيرتلى مودى وانا مكتئب ومتدشمل 
@@ -43,10 +53,11 @@ namespace EcomProject.DAL.UOW
             // تصبح على خير 
             // اخويا المبرمج التنين ♥♥♥♥
         }
-
+        public ICustomerBasket customerBasket { get; }
         public ICategoryRepo CategoryRepo { get; }
         public IProductRepo ProductRepo { get; }
         public IPhotoRepo PhotoRepo { get; }
+
 
         public async Task<int> SaveChangesAsync()
         {
