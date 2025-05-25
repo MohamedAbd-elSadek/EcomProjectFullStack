@@ -35,17 +35,14 @@ export class ShopComponent implements OnInit {
       next: (value) => {
         this.product = value.data;
         this.totalItems = value.totalCount;
-        this.itemsOnCurrentPage=value.data.length
-        console.log(this.product);
-        
+        this.itemsOnCurrentPage=value.data.length;
       }
     })
-    console.log(this.product.length);
     
     if(this.product.length != 0){
-          this.toastr.success("All products Loaded")
+          this.toastr.success("All products Loaded","SUCESS")
     }else{
-      this.toastr.error("Error Loading Products")
+      
     }
   }
 

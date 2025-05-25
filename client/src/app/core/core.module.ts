@@ -5,6 +5,9 @@ import { AppModule } from '../app.module';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { loaderInterceptor } from './Interceptor/loader.interceptor';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -14,7 +17,10 @@ import { loaderInterceptor } from './Interceptor/loader.interceptor';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule
   ],
   exports:[NavBarComponent],
   providers: [

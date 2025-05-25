@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../shared/Models/Product';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-shop-item',
@@ -8,6 +9,9 @@ import { Product } from '../../shared/Models/Product';
   styleUrl: './shop-item.component.css'
 })
 export class ShopItemComponent {
+  constructor(private service:CartService){}
   @Input() Product: Product;
-  isPhotoExpanded = false;
+  SetBasketValue (){
+    this.service.addItemtoBasket(this.Product);
+  }
 }

@@ -1,1 +1,58 @@
-<p>cart works!</p>
+@if (basket.id ==null) {
+    <p class="text-center text-danger"></p>
+}@else{
+<div class="container pt-4 flex-contaier">
+        <div class="basket-container">
+            <table class="table table-hover custom-table">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th>Product</th>
+                        <th></th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of basket.basketItems; track $index) {
+                    <tr>
+                        <td>
+                            <a routerLink="/shop/productdetails/{{item.id}}" class="text-dark text-decoration-none">
+                                {{item.name}}
+                            </a>
+                        </td>
+                        <td>
+                            <img src="{{item.image}}" class="product-image img-fluid" alt="">
+                        </td>
+                        <td class="description">
+                            {{item.description}}
+                        </td>
+                        <td>{{item.price}} EGP</td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button (click)="incrementQuantity(item)" class="btn btn-sm text-info">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <span class="mx-2"> {{item.quantity}}</span>
+                                <button (click)="DecrementQuantity(item)" class="btn btn-sm text-danger">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{(item.quantity)|currency}}</td>
+                        <td>
+                            <button (click)="RemoveBasket(item)" class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+    
+        </div>
+        
+    </div>
+}

@@ -12,10 +12,11 @@ export interface BasketItem {
   quantity: number
   price: number
   category: string
+  description:string
 }
 
 export class CustomerBasket implements Basket {
     id= uuidv4();
-    basketItems: BasketItem[]
+    basketItems: BasketItem[]=[]
     
 }
