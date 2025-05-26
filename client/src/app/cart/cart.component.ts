@@ -23,17 +23,22 @@ export class CartComponent implements OnInit{
       }
     })
   }
+  trackByIndex(index: number, item: any): number {
+  return index;
+}
 
-  incrementQuantity(item:BasketItem){
-    item.quantity++;
+  RemoveItemFromBasket(item:BasketItem){
+    this.service.removeItemFromBasket(item);
   }
+
+  IncrementQuantity(item:BasketItem){
+    this.service.incrementQuantity(item);
+    
+  }
+
   DecrementQuantity(item:BasketItem){
-    if(item.quantity>=1){
-    item.quantity--;
-    }
-  }
-  RemoveBasket(item:BasketItem){
-
+    this.service.DecrementQuantity(item);
+    
   }
 
 }

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductdetailsComponent } from './shop/productdetails/productdetails.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'shop/productdetails/:id',component:ProductdetailsComponent},
   {path:'cart',component:CartComponent},
+  {path:'checkout',component:CheckoutComponent},
   {path:'**',component:NotfoundComponent}
 ];
 

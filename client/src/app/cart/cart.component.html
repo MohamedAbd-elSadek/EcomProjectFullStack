@@ -1,58 +1,62 @@
-@if (basket.id ==null) {
-    <p class="text-center text-danger"></p>
-}@else{
-<div class="container pt-4 flex-contaier">
-        <div class="basket-container">
-            <table class="table table-hover custom-table">
-                <thead>
-                    <tr class="bg-info text-white">
-                        <th>Product</th>
-                        <th></th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (item of basket.basketItems; track $index) {
-                    <tr>
-                        <td>
-                            <a routerLink="/shop/productdetails/{{item.id}}" class="text-dark text-decoration-none">
-                                {{item.name}}
-                            </a>
-                        </td>
-                        <td>
-                            <img src="{{item.image}}" class="product-image img-fluid" alt="">
-                        </td>
-                        <td class="description">
-                            {{item.description}}
-                        </td>
-                        <td>{{item.price}} EGP</td>
-                        <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button (click)="incrementQuantity(item)" class="btn btn-sm text-info">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                                <span class="mx-2"> {{item.quantity}}</span>
-                                <button (click)="DecrementQuantity(item)" class="btn btn-sm text-danger">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                        </td>
-                        <td>{{(item.quantity)|currency}}</td>
-                        <td>
-                            <button (click)="RemoveBasket(item)" class="btn btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-    
-        </div>
-        
+<!-- Only show if basket exists -->
+<div *ngIf="basket?.id; else emptyCart">
+  <div class="container pt-4 flex-container">
+    <div class="basket-container">
+      <table class="table table-hover custom-table">
+        <thead>
+          <tr class="bg-info text-white">
+            <th>Product</th>
+            <th></th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of basket.basketItems; trackBy: trackByIndex">
+            <td>
+              <a [routerLink]="'/shop/productdetails/' + item.id" class="text-dark text-decoration-none">
+                {{ item.name }}
+              </a>
+            </td>
+            <td>
+              <img [src]="item.image" class="product-image img-fluid" alt="" />
+            </td>
+            <td class="description">
+              {{ item.description }}
+            </td>
+            <td>{{ item.price }} EGP</td>
+            <td>
+              <div class="d-flex justify-content-center align-items-center">
+                <button (click)="IncrementQuantity(item)" class="btn btn-sm text-info">
+                  <i class="fa fa-plus"></i>
+                </button>
+                <span class="mx-2">{{ item.quantity }}</span>
+                <button (click)="DecrementQuantity(item)" class="btn btn-sm text-danger">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </td>
+            <td>{{ item.quantity * item.price | number:'1.2-2' }} EGP</td>
+            <td>
+              <button (click)="RemoveItemFromBasket(item)" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-}
+  </div>
+  <div class="order-summary-container mx-4">
+    <app-ordertotal></app-ordertotal>
+    <a routerLink="/checkout" class="btn btn-dark w-100 mt-3">Proceed To Checkout</a>
+  </div>
+</div>
+
+<!-- Template shown if basket is null or has no ID -->
+<ng-template #emptyCart>
+  <p class="text-center text-danger">Your cart is empty.</p>
+</ng-template>

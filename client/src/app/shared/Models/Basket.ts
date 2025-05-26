@@ -20,3 +20,9 @@ export class CustomerBasket implements Basket {
     basketItems: BasketItem[]=[]
     
 }
+
+export interface BasketTotal {
+  shipping:number
+  subtotal:number
+  total:number
+}

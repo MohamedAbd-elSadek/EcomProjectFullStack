@@ -25,12 +25,12 @@
                     <div class="price-area my-4">
                         <p class="new-price text-bold mb-1">{{product.price}} EGP</p>
                         <p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>
-                        <p class="text-danger text-bold  mb-1">Quantity : </p>
-                         <button class="btn btn-danger text-white">
+                        <p class="text-danger text-bold  mb-1">Quantity : {{quantity}} </p>
+                         <button class="btn btn-danger text-white" (click)="DecrementBasket()">
                             <i class="fa fa-minus"></i>
                         </button>
                         &nbsp;
-                        <button class="btn btn-success text-white">
+                        <button class="btn btn-success text-white" (click)="IncrementBasket()" >
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
@@ -42,14 +42,10 @@
                                 <i class="fa fa-heart"></i>Wishlist</a>
                         </div>
                         <div class="block pt-2">
-                            <button class="shadow btn custom-btn">
+                            <button class="shadow btn custom-btn" (click)="AddToCart()">
                                 <i class="fa fa-shopping-cart"></i>Add to cart</button>
                         </div>
-                        <div class="block pt-2">
-                            <button class="shadow btn custom-btn">
-                                <i class="fa fa-shopping-bag">Shopping</i>
-                            </button>
-                        </div>
+                       
                     </div>
  
  

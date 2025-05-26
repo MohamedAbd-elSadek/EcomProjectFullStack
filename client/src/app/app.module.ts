@@ -15,6 +15,7 @@ import { ProductdetailsComponent } from './shop/productdetails/productdetails.co
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CartComponent } from './cart/cart.component';
     NotfoundComponent,
     LoginComponent,
     ProductdetailsComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { CartComponent } from './cart/cart.component';
       closeButton:true,
       countDuplicates:true,
       timeOut:1500
-    }), 
+    }),
+    SharedModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
