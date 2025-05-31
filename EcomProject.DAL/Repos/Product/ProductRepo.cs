@@ -35,7 +35,7 @@ namespace EcomProject.DAL.Repos.Product
         }
 
         // Sorting Section
-
+        // HI
         public async Task<List<Models.Product>> GetAllAsync(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
         {
             var query =  _context.Products
