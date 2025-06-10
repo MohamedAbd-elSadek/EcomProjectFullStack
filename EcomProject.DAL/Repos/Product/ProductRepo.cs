@@ -35,7 +35,7 @@ namespace EcomProject.DAL.Repos.Product
         }
 
         // Sorting Section
-
+        
         public async Task<List<Models.Product>> GetAllAsync(string sort, Guid? categoryId, int PageSize, int PageNumber, string? search)
         {
             var query =  _context.Products
@@ -50,11 +50,9 @@ namespace EcomProject.DAL.Repos.Product
                 p.Name.ToLower().Contains(word.ToLower())
                 //||
                 //p.Description.ToLower().Contains(word.ToLower())
-                )
-                
+                )   
                 );
             }
-
             //Filtering By Category
 
             if (categoryId != null) 

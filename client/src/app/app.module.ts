@@ -10,12 +10,13 @@ import { ShopModule } from './shop/shop.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './identity/login/login.component';
 import { ProductdetailsComponent } from './shop/productdetails/productdetails.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { IdentityModule } from "./identity/identity.module";
 
 
 @NgModule({
@@ -23,7 +24,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AppComponent,
     HomeComponent,
     NotfoundComponent,
-    LoginComponent,
     ProductdetailsComponent,
     CartComponent,
     CheckoutComponent
@@ -41,7 +41,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
       countDuplicates:true,
       timeOut:1500
     }),
-    SharedModule
+    SharedModule,
+    IdentityModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

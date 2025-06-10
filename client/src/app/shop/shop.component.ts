@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './shop.component.css'
 })
 export class ShopComponent implements OnInit {
-  constructor(private readonly shopService:ShopService,private toastr: ToastrService){
+  constructor(private readonly shopService:ShopService,private readonly toastr: ToastrService){
 
   }
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class ShopComponent implements OnInit {
     })
     
     if(this.product.length != 0){
-          this.toastr.success("All products Loaded","SUCESS")
+          this.toastr.success("Products Loaded Successfully","SUCESS")
     }else{
       
     }

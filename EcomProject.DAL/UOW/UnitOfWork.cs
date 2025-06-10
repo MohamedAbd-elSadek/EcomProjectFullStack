@@ -1,8 +1,10 @@
 ﻿using EcomProject.DAL.Context;
+using EcomProject.DAL.Models;
 using EcomProject.DAL.Repos.Basket;
 using EcomProject.DAL.Repos.Category;
 using EcomProject.DAL.Repos.Photo;
 using EcomProject.DAL.Repos.Product;
+using Microsoft.AspNetCore.Identity;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -16,16 +18,20 @@ namespace EcomProject.DAL.UOW
     {
         private readonly EcommDBContext _context;
         private readonly IConnectionMultiplexer _redis;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> signInManager;
         public UnitOfWork(EcommDBContext context,
             ICategoryRepo categoryRepo,
             IProductRepo productRepo,
             IPhotoRepo photoRepo,
             ICustomerBasket customerBasket,
-            IConnectionMultiplexer redis)
+            IConnectionMultiplexer redis,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
 
-            // يسطا
-            // انا خدت بالي من حاجه
-            // injectionانا عاكس ال
+        // يسطا
+        // انا خدت بالي من حاجه
+        // injectionانا عاكس ال
         {
             // ما هو ده اللى كنت هقولهولك ياعلق 
             ////////// خخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخ
@@ -42,6 +48,9 @@ namespace EcomProject.DAL.UOW
             this.customerBasket = customerBasket;
 
             _redis = redis;
+
+            _userManager = userManager;
+            this.signInManager = signInManager;
             //photoRepo = PhotoRepo;
             // خخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخخ
             // ضحك وعهد الله ... غيرتلى مودى وانا مكتئب ومتدشمل 
