@@ -1,53 +1,51 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../enviroment/enviroment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Product } from '../shared/Models/Product';
 import { Category } from '../shared/Models/Category';
 import { ProductParam } from '../shared/Models/ProductParam';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShopService implements OnInit {
+export class ShopService {
 
-constructor(private readonly http:HttpClient){
+  constructor(private readonly http: HttpClient) {}
 
-  }
-
-  category:Category[];
-  getCategory(){
+  getCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.apiUrl + '/category');
   }
 
-  prodUrl =environment.apiUrl + '/product?sort=&categoryId=&PageSize=4&PageNumber=1&search=';
+  
+  getProduct(productParam?: ProductParam): Observable<{ data: Product[], totalCount: number }> {
+    let params = new HttpParams();
 
-  product:Product[];
+    if (productParam?.categoryId) {
+      params = params.set("categoryId", productParam.categoryId);
+    }
+    if (productParam?.sortingOption) {
+      params = params.set("sort", productParam.sortingOption);
+    }
+    if (productParam?.search) {
+      params = params.set("search", productParam.search);
+    }
+    if (productParam?.pageNumber) {
+      params = params.set("PageNumber", productParam.pageNumber.toString());
+    }
+    if (productParam?.pageSize) {
+      params = params.set("PageSize", productParam.pageSize.toString());
+    }
 
-  getProduct(ProductParam?: ProductParam) {
-    let param = new HttpParams();
-    if(ProductParam?.categoryId){
-      param = param.set("categoryId", ProductParam.categoryId);
-    }
-    if(ProductParam?.sortingOption) {
-      param = param.set("sort", ProductParam.sortingOption);
-    }
-    if(ProductParam?.search){
-      param = param.set("search", ProductParam.search);
-    }
-    if(ProductParam?.pageNumber){
-      param = param.set("PageNumber", ProductParam.pageNumber);
-    }
-    if(ProductParam?.pageSize){
-      param = param.set("PageSize", ProductParam.pageSize);
-    }
-    return this.http.get<{ data: Product[], totalCount: number }>(environment.apiUrl + '/product', { params: param });
+    return this.http.get<{ data: Product[], totalCount: number }>(
+      environment.apiUrl + '/product',
+      { params: params }
+    );
   }
 
-  getProductDetails(productId:string){
-    return this.http.get<Product>(environment.apiUrl + '/product/'+ productId )
+  getProductDetails(productId: string): Observable<Product> {
+    return this.http.get<Product>(environment.apiUrl + '/product/' + productId);
   }
-  ngOnInit(): void {
-this.getCategory();
-this.getProduct();
-}
+
+  
 }

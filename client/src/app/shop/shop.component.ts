@@ -1,117 +1,112 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from './shop.service';
 import { Product } from '../shared/Models/Product';
-import { Photo } from '../shared/Models/Photo';
 import { Category } from '../shared/Models/Category';
 import { ProductParam } from '../shared/Models/ProductParam';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
   standalone: false,
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.css'
+  styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  constructor(private readonly shopService:ShopService,private readonly toastr: ToastrService){
-
-  }
-  ngOnInit(): void {
-   this.getAllProducts();
-   this.getAllCategories();
-  }
-  //GetProducts
   product: Product[] = [];
-  photo:Photo[]
+  category: Category[];
   totalItems: number = 0;
   currentPage: number = 1;
-  itemsOnCurrentPage:number
+  itemsOnCurrentPage: number;
 
+  Params = new ProductParam();
 
-  Params=new ProductParam()
+  SortingOptions = [
+    { name: "Name", value: "Name" },
+    { name: "Price: Min-Max", value: "priceasc" },
+    { name: "Price: Max-Min", value: "pricedesc" }
+  ];
 
-   getAllProducts(){
+  formSearch: string = "";
+
+  constructor(
+    private readonly shopService: ShopService,
+    private readonly toastr: ToastrService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.Params.pageNumber = params['pageNumber'] ? +params['pageNumber'] : 1;
+      this.Params.categoryId = params['categoryId'] || '';
+      this.Params.sortingOption = params['sort'] || 'Name';
+      this.Params.search = params['search'] || '';
+      
+      this.currentPage = this.Params.pageNumber;
+      this.formSearch = this.Params.search;
+      
+      this.getAllProducts();
+    });
+
+    this.getAllCategories();
+  }
+
+  getAllProducts() {
     this.shopService.getProduct(this.Params).subscribe({
       next: (value) => {
-        this.product = value.data;
-        this.totalItems = value.totalCount;
-        this.itemsOnCurrentPage=value.data.length;
+        if (value) {
+          this.product = value.data;
+          this.totalItems = value.totalCount;
+          this.itemsOnCurrentPage = value.data.length; 
+        }
+      },
+      error: (err) => {
+        this.toastr.error("Failed to load products.", "ERROR");
+        console.error(err);
       }
-    })
-    
-    if(this.product.length != 0){
-          this.toastr.success("Products Loaded Successfully","SUCESS")
-    }else{
-      
+    });
+  }
+
+  getAllCategories() {
+    this.shopService.getCategory().subscribe({
+      next: (value: Category[]) => {
+        this.category = value;
+      }
+    });
+  }
+
+  selectedCategory(categoryID: string) {
+    this.updateQueryParams({ categoryId: categoryID || null, pageNumber: 1 });
+  }
+
+  OptionSelection(sortEvent: Event) {
+    const sortValue = (sortEvent.target as HTMLSelectElement).value;
+    this.updateQueryParams({ sort: sortValue, pageNumber: 1 });
+  }
+
+  onSearch(search: string) {
+    this.formSearch = search;
+    this.updateQueryParams({ search: this.formSearch.trim() || null, pageNumber: 1 });
+  }
+
+  resetValue() {
+    this.formSearch = '';
+    this.router.navigate(['/shop']);
+  }
+
+  OnPageChange(page: number) {
+    if (this.Params.pageNumber !== page) {
+      this.updateQueryParams({ pageNumber: page });
     }
   }
 
-  //GetCategories
-  category:Category[]
-  // categoryId:string
-  getAllCategories(){
-    this.shopService.getCategory().subscribe({
-      next:((value:Category[])=>{
-        this.category=value;
-      })
-    })
+
+  private updateQueryParams(params: object) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+      queryParamsHandling: 'merge', 
+    });
   }
-
-  selectedCategory(categoryID:string){
-    this.Params.categoryId = categoryID
-    
-    this.getAllProducts();
-  }
-
-  //Sorting by Price
-
-  SortingOptions =[
-    {name:"Name",value:"Name"},
-    {name:"Price:Min-Max",value:"priceasc"},
-    {name:"Price:Max-Min",value:"pricedesc"}
-  ]
-
-  // sortingOption:string;
-
-  OptionSelection(sort: Event) {
-    this.Params.sortingOption=(sort.target as HTMLInputElement ).value
-    
-    this.getAllProducts();
 }
-
-//sorting by search
-
-// search:string
-
-onSearch(Search:string){
-this.Params.search=Search;
-this.getAllProducts();
-}
-
-//reset button
-
-formSearch:string=""
-
-resetValue(){
-  this.Params.search=""
-  this.Params.sortingOption="Name"
-  this.Params.categoryId=""
-  this.Params.pageNumber=1
-
-   this.currentPage = 1;
-  
-  this.getAllProducts();
-  this.formSearch=""
-
-}
-
-OnPageChange(page:any){
-  this.currentPage = page;
-  this.Params.pageNumber=page
-  
-  this.getAllProducts();
-}
-
-
-    
-  }
