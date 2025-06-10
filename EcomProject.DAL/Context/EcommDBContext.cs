@@ -1,4 +1,4 @@
-﻿using EcomProject.DAL.Models;
+﻿    using EcomProject.DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

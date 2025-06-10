@@ -1,0 +1,73 @@
+<section class="form-section">
+    <div class="form-container">
+        <h2 class="text-center">Login</h2>
+        <form [formGroup]="formGroup" (ngSubmit)="Login()">
+
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email" 
+                       [class.is-valid]="email.valid"
+                       [class.is-invalid]="email.invalid && email.touched">
+                @if (email.touched) {
+                    @if (email.hasError('required')) {
+                        <span class="text-danger">Email is required.</span>
+                    } @else if (email.hasError('email')) {
+                        <span class="text-danger">Email format is invalid. Example: "user&#64;example.com"</span>
+                    }
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password"
+                       [class.is-valid]="password.valid"
+                       [class.is-invalid]="password.invalid && password.touched">
+                @if (password.touched) {
+                    @if (password.hasError('required')) {
+                        <span class="text-danger">Password is required.</span>
+                    } @else if (password.hasError('pattern')) {
+                        <span class="text-danger">
+                            Password must contain at least one number, one small Character, one Capital character , and be at least 8 characters long.
+                        </span>
+                    }
+                }
+            </div>
+
+            <div class="form-group pt-4">
+                <button class="btn btn-info w-100" [disabled]="formGroup.invalid">
+                    Login
+                </button>
+            </div>
+            <div class="from-group pt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-danger" routerLink="/Account/Register">Create Account</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Forget Password
+             </button>
+             </div>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Forget Password</h5>
+        
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="emailModel">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="SendEmailForgetPassword()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

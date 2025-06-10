@@ -2,8 +2,10 @@
   <div class="container">
     <!-- Brand -->
     <a routerLink="/" class="navbar-brand">
-      <img src="./favicon.ico" alt="" class="logo" />
-      <i class="text-white">E-Commerce</i>
+      <!-- <img src="../../../../favicon-tag-64.ico" alt="" class="logo" /> -->
+      <!-- <img src="./favicon.ico" alt="" class="logo" /> -->
+      <img src="./favicon-tag-purple-64.ico" alt="" class="logo" />
+      <i class="text-white px-3">Sawaaly</i>
     </a>
 
     <!-- Toggler button -->
@@ -23,8 +25,8 @@
         <li class="nav-item"><a routerLink="/shop" class="nav-link" routerLinkActive="active">Shopping</a></li>
         <li class="nav-item"><a routerLink="/about" class="nav-link" routerLinkActive="active">About Us</a></li>
         <!-- Mobile-only links -->
-        <li class="nav-item d-lg-none"><a routerLink="/register" class="nav-link">Register</a></li>
-        <li class="nav-item d-lg-none"><a routerLink="/login" class="nav-link">Login</a></li>
+        <li class="nav-item d-lg-none"><a routerLink="/Account/Register" class="nav-link">Register</a></li>
+        <li class="nav-item d-lg-none"><a routerLink="/Account/Login" class="nav-link">Login</a></li>
         <li class="nav-item d-lg-none"><a routerLink="/orders" class="nav-link">My Order</a></li>
       </ul>
 
@@ -52,8 +54,8 @@
             <i class="material-icons">account_circle</i>
           </a>
           <div [ngClass]="{ show: visible }" class="dropdown-menu dropdown-menu-end">
-            <a routerLink="/register" class="dropdown-item">Register <i class="fa fa-user-plus"></i></a>
-            <a routerLink="/login" class="dropdown-item">Login <i class="fa fa-sign-in"></i></a>
+            <a routerLink="/Account/Register" class="dropdown-item">Register <i class="fa fa-user-plus"></i></a>
+            <a routerLink="/Account/Login" class="dropdown-item">Login <i class="fa fa-sign-in"></i></a>
             <a routerLink="/orders" class="dropdown-item">My Order <i class="fa fa-list"></i></a>
           </div>
         </li>

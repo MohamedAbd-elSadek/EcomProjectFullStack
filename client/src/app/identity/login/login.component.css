@@ -1,0 +1,20 @@
+section.form-section {
+  /* These three lines work together to center the container */
+  display: flex;              /* <-- This enables flexbox layout */
+  justify-content: center;    /* <-- THIS CENTERS IT HORIZONTALLY */
+  align-items: flex-start;    /* <-- This aligns it to the top */
+
+  /* These are for styling and spacing */
+  padding-top: 5rem;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

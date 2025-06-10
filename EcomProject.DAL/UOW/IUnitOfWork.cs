@@ -19,5 +19,6 @@ namespace EcomProject.DAL.UOW
         public IPhotoRepo PhotoRepo { get; }
 
         public ICustomerBasket customerBasket { get; }
+
     }
 }
